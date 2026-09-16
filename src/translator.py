@@ -9,7 +9,7 @@ from .query_languages import SUPPORTED_LANGUAGES, QueryLanguageSpec
 DEFAULT_MODEL = "claude-sonnet-5"
 
 
-def _build_prompt(spec: QueryLanguageSpec, nl_prompt: str) -> str:
+def build_prompt(spec: QueryLanguageSpec, nl_prompt: str) -> str:
     examples = "\n".join(
         f'NL: "{nl}"\n{spec.name}: {query}' for nl, query in spec.examples
     )
@@ -35,7 +35,7 @@ class QueryTranslator:
                 f"Choose from: {', '.join(SUPPORTED_LANGUAGES)}"
             )
         spec = SUPPORTED_LANGUAGES[language]
-        prompt = _build_prompt(spec, nl_prompt)
+        prompt = build_prompt(spec, nl_prompt)
 
         response = self.client.messages.create(
             model=self.model,
