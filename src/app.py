@@ -2,13 +2,17 @@
 LogQL, PromQL, and MQL, and browse past benchmark runs."""
 
 import json
+import sys
+from pathlib import Path
 
 import streamlit as st
 from dotenv import load_dotenv
 
-from .benchmark import RESULTS_DIR
-from .query_languages import SUPPORTED_LANGUAGES
-from .translator import QueryTranslator
+sys.path.insert(0, str(Path(__file__).resolve().parent.parent))
+
+from src.benchmark import RESULTS_DIR
+from src.query_languages import SUPPORTED_LANGUAGES
+from src.translator import QueryTranslator
 
 load_dotenv()
 
@@ -44,7 +48,7 @@ with tab_benchmark:
             "Benchmark run", options=result_files, format_func=lambda p: p.name
         )
         data = json.loads(selected.read_text())
-        st.dataframe(data, use_container_width=True)
+        st.dataframe(data, width="stretch")
 
         avg_latency = {}
         for row in data:
