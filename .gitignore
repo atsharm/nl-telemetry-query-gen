@@ -1,0 +1,7 @@
+__pycache__/
+*.pyc
+.venv/
+.env
+.streamlit/secrets.toml
+benchmark_results/*.json
+.DS_Store
