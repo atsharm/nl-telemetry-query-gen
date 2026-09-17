@@ -5,3 +5,4 @@ __pycache__/
 .streamlit/secrets.toml
 benchmark_results/*.json
 .DS_Store
+nl-telemetry-query-gen-for-dummies.md
